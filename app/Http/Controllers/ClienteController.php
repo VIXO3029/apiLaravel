@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
@@ -33,10 +32,7 @@ class ClienteController extends Controller
             'apellidos' => 'required|string',
         ]);
 
-        $cliente = Cliente::create([
-            'nombre' => $request->input('nombre'),
-            'apellidos' => $request->input('apellidos'),
-        ]);
+        $cliente = Cliente::create($request->only(['nombre', 'apellidos']));
 
         return response()->json($cliente, 201);
     }
@@ -66,10 +62,7 @@ class ClienteController extends Controller
             'apellidos' => 'required',
         ]);
 
-        $cliente->update([
-            'nombre' => $request->input('nombre'),
-            'apellidos' => $request->input('apellidos'),
-        ]);
+        $cliente->update($request->only(['nombre', 'apellidos']));
 
         return response()->json($cliente, 200);
     }
