@@ -13,10 +13,22 @@ class ClienteController extends Controller
      *
      * @return JsonResponse
      */
+    
+     //--------------------------------------------------------
+    // public function index()
+    // {
+    //     $clientes = Cliente::all();
+    //     return response()->json($clientes);
+    // }
+
     public function index()
     {
-        $clientes = Cliente::all();
-        return response()->json($clientes);
+        try {
+            $clientes = Cliente::all();
+            return response()->json($clientes, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al obtener la lista de clientes'], 500);
+        }
     }
 
     /**
@@ -25,16 +37,34 @@ class ClienteController extends Controller
      * @param  Request  $request
      * @return JsonResponse
      */
+
+  //----------------------------------------------------------------------
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'nombre' => 'required|string',
+    //         'apellidos' => 'required|string',
+    //     ]);
+
+    //     $cliente = Cliente::create($request->only(['nombre', 'apellidos']));
+
+    //     return response()->json($cliente, 201);
+    // }
+
     public function store(Request $request)
     {
-        $request->validate([
-            'nombre' => 'required|string',
-            'apellidos' => 'required|string',
-        ]);
+        try {
+            $request->validate([
+                'nombre' => 'required|string',
+                'apellidos' => 'required|string',
+            ]);
 
-        $cliente = Cliente::create($request->only(['nombre', 'apellidos']));
+            $cliente = Cliente::create($request->only(['nombre', 'apellidos']));
 
-        return response()->json($cliente, 201);
+            return response()->json($cliente, 201);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al crear un nuevo cliente'], 500);
+        }
     }
 
     /**
@@ -73,9 +103,21 @@ class ClienteController extends Controller
      * @param  Cliente  $cliente
      * @return JsonResponse
      */
+
+     //--------------------------------------------------------------------
+    // public function destroy(Cliente $cliente)
+    // {
+    //     $cliente->delete();
+    //     return response()->json(null, 204);
+    // }
+
     public function destroy(Cliente $cliente)
     {
-        $cliente->delete();
-        return response()->json(null, 204);
+        try {
+            $cliente->delete();
+            return response()->json(null, 204);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al eliminar el cliente'], 500);
+        }
     }
 }
