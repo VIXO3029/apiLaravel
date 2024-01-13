@@ -8,91 +8,60 @@ use Illuminate\Http\JsonResponse;
 
 class ClienteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return JsonResponse
-     */
     public function index()
     {
         try {
             $clientes = Cliente::all();
-            return response()->json($clientes, 200);
+            return response()->json($clientes, JsonResponse::HTTP_OK);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Error al obtener la lista de clientes'], 500);
+            return response()->json(['error' => 'Error al obtener la lista de clientes', 'details' => $e->getMessage()], JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  Request  $request
-     * @return JsonResponse
-     */
     public function store(Request $request)
     {
         try {
-            $request->validate([
+            $validatedData = $request->validate([
                 'nombre' => 'required|string',
                 'apellidos' => 'required|string',
             ]);
 
-            $cliente = Cliente::create($request->only(['nombre', 'apellidos']));
+            $cliente = Cliente::create($validatedData);
 
-            return response()->json($cliente, 201);
+            return response()->json($cliente, JsonResponse::HTTP_CREATED);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Error al crear un nuevo cliente'], 500);
+            return response()->json(['error' => 'Error al crear un nuevo cliente', 'details' => $e->getMessage()], JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  Cliente  $cliente
-     * @return JsonResponse
-     */
     public function show(Cliente $cliente)
     {
-        return response()->json($cliente);
+        return response()->json($cliente, JsonResponse::HTTP_OK);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  Request  $request
-     * @param  Cliente  $cliente
-     * @return JsonResponse
-     */
     public function update(Request $request, Cliente $cliente)
     {
         try {
-            $request->validate([
-                'nombre' => 'required',
-                'apellidos' => 'required',
+            $validatedData = $request->validate([
+                'nombre' => 'required|string',
+                'apellidos' => 'required|string',
             ]);
 
-            $cliente->update($request->only(['nombre', 'apellidos']));
+            $cliente->update($validatedData);
 
-            return response()->json($cliente, 200);
+            return response()->json($cliente, JsonResponse::HTTP_OK);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Error al actualizar el cliente'], 500);
+            return response()->json(['error' => 'Error al actualizar el cliente', 'details' => $e->getMessage()], JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  Cliente  $cliente
-     * @return JsonResponse
-     */
     public function destroy(Cliente $cliente)
     {
         try {
             $cliente->delete();
-            return response()->json(null, 204);
+            return response()->json(null, JsonResponse::HTTP_NO_CONTENT);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Error al eliminar el cliente'], 500);
+            return response()->json(['error' => 'Error al eliminar el cliente', 'details' => $e->getMessage()], JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 }
-
