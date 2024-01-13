@@ -16,5 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource('clientes', ClienteController::class);
+// Route::apiResource('clientes', ClienteController::class);
 // Route::apiResource('api/clientes', \App\Http\Controllers\ClienteController::class);
+
+
+Route::prefix('api')->group(function () {
+    Route::apiResource('clientes', ClienteController::class);
+});

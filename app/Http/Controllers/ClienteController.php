@@ -13,14 +13,6 @@ class ClienteController extends Controller
      *
      * @return JsonResponse
      */
-    
-     //--------------------------------------------------------
-    // public function index()
-    // {
-    //     $clientes = Cliente::all();
-    //     return response()->json($clientes);
-    // }
-
     public function index()
     {
         try {
@@ -37,20 +29,6 @@ class ClienteController extends Controller
      * @param  Request  $request
      * @return JsonResponse
      */
-
-  //----------------------------------------------------------------------
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'nombre' => 'required|string',
-    //         'apellidos' => 'required|string',
-    //     ]);
-
-    //     $cliente = Cliente::create($request->only(['nombre', 'apellidos']));
-
-    //     return response()->json($cliente, 201);
-    // }
-
     public function store(Request $request)
     {
         try {
@@ -87,14 +65,18 @@ class ClienteController extends Controller
      */
     public function update(Request $request, Cliente $cliente)
     {
-        $request->validate([
-            'nombre' => 'required',
-            'apellidos' => 'required',
-        ]);
+        try {
+            $request->validate([
+                'nombre' => 'required',
+                'apellidos' => 'required',
+            ]);
 
-        $cliente->update($request->only(['nombre', 'apellidos']));
+            $cliente->update($request->only(['nombre', 'apellidos']));
 
-        return response()->json($cliente, 200);
+            return response()->json($cliente, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al actualizar el cliente'], 500);
+        }
     }
 
     /**
@@ -103,14 +85,6 @@ class ClienteController extends Controller
      * @param  Cliente  $cliente
      * @return JsonResponse
      */
-
-     //--------------------------------------------------------------------
-    // public function destroy(Cliente $cliente)
-    // {
-    //     $cliente->delete();
-    //     return response()->json(null, 204);
-    // }
-
     public function destroy(Cliente $cliente)
     {
         try {
@@ -121,3 +95,4 @@ class ClienteController extends Controller
         }
     }
 }
+
