@@ -70,3 +70,6 @@ Route::get('/clientes', function () {
 Route::apiResource('api/clientes', ClienteController::class);
 Route::post('/api/clientes', [ClienteController::class, 'store']);
 
+
+Route::post('/clientes', [ClienteController::class, 'store']);
+

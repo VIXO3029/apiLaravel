@@ -85,10 +85,10 @@
                 </tbody>
             </table>
         </div>
-
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <script src="{{ asset('js/clientes.js') }}"></script>
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{{ asset('js/clientes.js') }}"></script>
 
     <footer>
         <p>&copy; 2024 Mi Página Laravel. Victor Manuel Rodriguez Pena, Todos los derechos reservados.</p>
@@ -96,3 +96,5 @@
 
 </body>
 </html>
+
+

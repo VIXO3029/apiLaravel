@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('clientes', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre'); // Cambié nombre() a string('nombre')
-            $table->string('apellidos'); // Cambié apellidos() a string('apellidos')
-            $table->timestamps();
+            $table->id(); // Crea una columna de identificación automática (clave primaria)
+            $table->string('nombre'); // Crea una columna de tipo cadena llamada 'nombre'
+            $table->string('apellidos'); // Crea una columna de tipo cadena llamada 'apellidos'
+            $table->timestamps(); // Crea columnas de marcas de tiempo 'created_at' y 'updated_at'
         });
     }
 
@@ -24,6 +24,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clientes');
+        Schema::dropIfExists('clientes'); // Elimina la tabla 'clientes' si existe
     }
 };
+
