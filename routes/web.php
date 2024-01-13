@@ -26,6 +26,33 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
+// Route::get('/', function () {
+//     return view('welcome.index');
+// });
+
+// routes/web.php
+
+
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Route::get('/clientes', function () {
+//     return view('welcome.Clientes');
+// });
+
+// routes/web.php
+
+use App\Http\Controllers\ClienteController;
+
 Route::get('/', function () {
     return view('welcome.index');
 });
+
+Route::get('clientes', function () {
+    return view('clientes');
+});
+
+Route::apiResource('api/clientes', ClienteController::class);
+
