@@ -25,3 +25,31 @@ async function cargarClientes() {
         console.error('Error al cargar los clientes:', error);
     }
 }
+// Evento click para mostrar el modal y obtener el nombre del cliente a eliminar
+$('#tablaClientes').on('click', '.eliminar-cliente', function() {
+    var idCliente = $(this).data('id');
+    var nombreCliente = $(this).data('nombre');
+    
+    $('#nombreClienteEliminar').text(nombreCliente);
+    
+    $('#confirmarEliminarModal').modal('show');
+    
+    // Al hacer clic en el botón "Eliminar" del modal
+    $('#btnEliminarCliente').on('click', function() {
+        eliminarCliente(idCliente);
+        $('#confirmarEliminarModal').modal('hide');
+    });
+});
+
+// Función para eliminar un cliente
+function eliminarCliente(idCliente) {
+    // Realizar la solicitud al servidor para eliminar el cliente con el ID proporcionado
+    axios.delete(`/api/clientes/${idCliente}`)
+        .then(function (response) {
+            // Actualizar la tabla después de eliminar el cliente
+            cargarClientes();
+        })
+        .catch(function (error) {
+            console.error('Error al eliminar el cliente:', error);
+        });
+}
