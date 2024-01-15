@@ -95,6 +95,7 @@ async function cargarClientes() {
     }
 }
 
+
 // Delegación de eventos para el evento click en botones dentro de '#tablaClientes'
 document.getElementById('tablaClientes').addEventListener('click', function (event) {
     if (event.target.classList.contains('eliminar-btn')) {

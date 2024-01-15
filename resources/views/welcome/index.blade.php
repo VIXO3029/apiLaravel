@@ -79,14 +79,16 @@
     <header>
         <h1>Mi Página Laravel</h1>
     </header>
-
     <main>
         <div class="container">
             <h2 class="mb-4">Tabla de Clientes</h2>
+
             <div class="btn-group">
                 <button class="btn btn-primary" id="btnRefresh">Actualizar</button>
                 <a href="{{ route('clientes.create') }}" class="btn btn-success">Agregar Cliente</a>
+                <button class="btn btn-warning" id="btnModificarCliente">Modificar Cliente</button>
             </div>
+
             <table class="table">
                 <thead>
                     <tr>
@@ -100,24 +102,25 @@
                     <!-- Aquí se insertarán los datos dinámicamente desde JavaScript -->
                 </tbody>
             </table>
+
             <!-- Modal para confirmar la eliminación -->
-                <div class="modal fade" id="confirmarEliminarModal" tabindex="-1" aria-labelledby="confirmarEliminarModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="confirmarEliminarModalLabel">Confirmar Eliminación</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                ¿Estás seguro de que deseas eliminar al cliente <span id="nombreClienteEliminar"></span>?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-danger" id="btnEliminarCliente">Eliminar</button>
-                            </div>
+            <div class="modal fade" id="confirmarEliminarModal" tabindex="-1" aria-labelledby="confirmarEliminarModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmarEliminarModalLabel">Confirmar Eliminación</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ¿Estás seguro de que deseas eliminar al cliente <span id="nombreClienteEliminar"></span>?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-danger" id="btnEliminarCliente">Eliminar</button>
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
     </main>
 

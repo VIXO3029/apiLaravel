@@ -128,6 +128,8 @@ Route::prefix('clientes')->group(function () {
     Route::get('/{cliente}', [ClienteController::class, 'show'])->name('clientes.show');
     Route::get('/{cliente}/edit', [ClienteController::class, 'edit'])->name('clientes.edit');
     Route::put('/{cliente}', [ClienteController::class, 'update'])->name('clientes.update');
+    Route::get('/clientes/create', [ClienteController::class, 'create'])->name('clientes.create');
+    Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store');
     Route::delete('/{cliente}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
 });
 
@@ -138,5 +140,7 @@ Route::prefix('api/clientes')->group(function () {
     Route::post('/', [ClienteController::class, 'store']);
     Route::put('/{cliente}', [ClienteController::class, 'update']);
     Route::delete('/{cliente}', [ClienteController::class, 'destroy']);
+    Route::post('/api/clientes', [ClienteController::class, 'store']);
+
 });
 
