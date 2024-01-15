@@ -40,6 +40,11 @@ class ClienteController extends Controller
         }
     }
 
+    public function edit()
+    {
+        return view('clientes.edit');
+    }
+
     public function show(Cliente $cliente)
     {
         return response()->json($cliente, JsonResponse::HTTP_OK);

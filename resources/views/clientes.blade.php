@@ -23,7 +23,8 @@
         <div class="action-buttons">
             <button onclick="handleButton('consultar')">Consultar Cliente</button>
             <button id="btnAñadirCliente" onclick="abrirModalInsertarCliente()">Añadir Cliente</button>
-            <button onclick="handleButton('modificar')">Modificar Cliente</button>
+            <!-- <button onclick="handleButton('modificar')">Modificar Cliente</button> -->
+            <button class="btn btn-warning" id="btnModificarCliente">Modificar Cliente</button>
             <button onclick="handleButton('borrar')">Borrar Cliente</button>
         </div>
 

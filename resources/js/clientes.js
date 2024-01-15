@@ -25,6 +25,17 @@ async function cargarClientes() {
         console.error('Error al cargar los clientes:', error);
     }
 }
+
+// Evento click para mostrar el modal y obtener el nombre del cliente a modificar
+$('#tablaClientes').on('click', '.modificar-cliente', function() {
+    var idCliente = $(this).data('id');
+    var nombreCliente = $(this).data('nombre');
+
+    // Agregar lógica para redireccionar a la página de modificación
+    window.location.href = "/clientes/" + idCliente + "/edit";
+});
+
+
 // Evento click para mostrar el modal y obtener el nombre del cliente a eliminar
 $('#tablaClientes').on('click', '.eliminar-cliente', function() {
     var idCliente = $(this).data('id');
