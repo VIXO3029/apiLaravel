@@ -27,8 +27,8 @@
     </main>
 
     <footer>
-        <p>&copy; {{ date('Y') }} Mi Página Laravel. Todos los derechos reservados.</p>
-    </footer>
+    <p>&copy; {{ date('Y') }} Mi Página Laravel. {{ config('app.author') }}. Todos los derechos reservados.</p>
+</footer>
 
     <!-- Scripts de Bootstrap y jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

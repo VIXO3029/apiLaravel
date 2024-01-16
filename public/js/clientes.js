@@ -86,46 +86,41 @@ async function cargarClientes() {
                 <td>${cliente.apellidos}</td>
                 <td>
                     <button class="btn btn-danger btn-sm eliminar-btn" data-id="${cliente.id}" data-nombre="${cliente.nombre} ${cliente.apellidos}">Eliminar</button>
+                    <a href="{{ route('clientes.edit', ['cliente' => 1]) }}" class="btn btn-warning">Modificar Cliente</a>
                 </td>
             `;
             tablaClientes.appendChild(fila);
         });
+
+        // Delegación de eventos para el evento click en botones dentro de '#tablaClientes'
+        tablaClientes.addEventListener('click', function (event) {
+            if (event.target.classList.contains('eliminar-btn')) {
+                // Si el clic fue en un botón de eliminar, obtener datos del cliente y mostrar el modal
+                const idCliente = event.target.dataset.id;
+                const nombreCliente = event.target.dataset.nombre;
+
+                $('#nombreClienteEliminar').text(nombreCliente);
+                $('#confirmarEliminarModal').modal('show');
+
+                // Al hacer clic en el botón "Eliminar" del modal
+                $('#btnEliminarCliente').one('click', function () {
+                    // Realizar la solicitud al servidor para eliminar el cliente con el ID proporcionado
+                    axios.delete(`/api/clientes/${idCliente}`)
+                        .then(function (response) {
+                            // Actualizar la tabla después de eliminar el cliente
+                            cargarClientes();
+                        })
+                        .catch(function (error) {
+                            console.error('Error al eliminar el cliente:', error);
+                        })
+                        .finally(function () {
+                            $('#confirmarEliminarModal').modal('hide');
+                        });
+                });
+            }
+        });
+
     } catch (error) {
         console.error('Error al cargar los clientes:', error);
     }
 }
-
-
-// Delegación de eventos para el evento click en botones dentro de '#tablaClientes'
-document.getElementById('tablaClientes').addEventListener('click', function (event) {
-    if (event.target.classList.contains('eliminar-btn')) {
-        // Si el clic fue en un botón de eliminar, obtener datos del cliente y mostrar el modal
-        var idCliente = event.target.dataset.id;
-        var nombreCliente = event.target.dataset.nombre;
-
-        $('#nombreClienteEliminar').text(nombreCliente);
-        $('#confirmarEliminarModal').modal('show');
-
-        // Al hacer clic en el botón "Eliminar" del modal
-        $('#btnEliminarCliente').on('click', function () {
-            eliminarCliente(idCliente);
-            $('#confirmarEliminarModal').modal('hide');
-        });
-    }
-});
-
-// Función para eliminar un cliente
-function eliminarCliente(idCliente) {
-    // Realizar la solicitud al servidor para eliminar el cliente con el ID proporcionado
-    axios.delete(`/api/clientes/${idCliente}`)
-        .then(function (response) {
-            // Actualizar la tabla después de eliminar el cliente
-            cargarClientes();
-        })
-        .catch(function (error) {
-            console.error('Error al eliminar el cliente:', error);
-        });
-}
-
-
-

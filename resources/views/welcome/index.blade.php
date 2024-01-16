@@ -86,7 +86,8 @@
             <div class="btn-group">
                 <button class="btn btn-primary" id="btnRefresh">Actualizar</button>
                 <a href="{{ route('clientes.create') }}" class="btn btn-success">Agregar Cliente</a>
-                <button class="btn btn-warning" id="btnModificarCliente">Modificar Cliente</button>
+                <a href="{{ route('clientes.edit', ['cliente' => 1]) }}" class="btn btn-warning">Modificar Cliente</a>
+
             </div>
 
             <table class="table">
