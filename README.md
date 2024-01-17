@@ -64,3 +64,12 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Como clonar el proyecto en un servidor local
+git clone 
+cd apiparaprincipianteslaravelversion10
+Instalar las dependencias del proyecto con: composer install
+Configurar el archivo .env.example y dejarlo como .env y dentro colocar todas las variables de entorno de nuestro proyecto.
+Creamos la base de datos para nuestro proyecto.
+Generar una APP_KEY que es una llave para cada proyecto de Laravel se puede generar con este comando: php artisan key:generate
+Generar las migraciones y ejecutar los seeders para nuestras tablas de base de datos con este comando: php artisan migrate --seed
