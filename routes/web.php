@@ -160,7 +160,6 @@ Route::prefix('clientes')->group(function () {
     Route::get('/create', [ClienteController::class, 'create'])->name('clientes.create');
     Route::post('/', [ClienteController::class, 'store'])->name('clientes.store');
     Route::get('/{cliente}/edit', [ClienteController::class, 'edit'])->name('clientes.edit');
-    Route::get('/clientes/{cliente}/edit', [ClienteController::class, 'edit'])->name('clientes.edit');
     Route::put('/{cliente}', [ClienteController::class, 'update'])->name('clientes.update');
     Route::delete('/{cliente}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
 });

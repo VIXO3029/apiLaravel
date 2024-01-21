@@ -6,10 +6,20 @@ use App\Models\Cliente;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
+/**
+* @OA\Info(
+*             title="API Clientes", 
+*             version="1.0",
+*             description="Listado de las URI'S de la API Clientes"
+* )
+*
+* @OA\Server(url="http://127.0.0.1:8000")
+*/
+
 class ClienteController extends Controller
 
 {
-
+    
     // Agrega la siguiente línea para definir la variable $author
     private $author;
 
@@ -18,7 +28,51 @@ class ClienteController extends Controller
         // Recupera el valor de APP_AUTHOR del entorno o utiliza 'Nombre predeterminado' como valor predeterminado
         $this->author = env('APP_AUTHOR', 'Victor Manuel Rodriguez Pena');
     }
-    
+    /**
+     * Listado de todos los registros de los clientes
+     * @OA\Get (
+     *     path="/api/clientes ",
+     *     tags={"Cliente"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 type="array",
+     *                 property="rows",
+     *                 @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(
+     *                         property="id",
+     *                         type="number",
+     *                         example="1"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="nombre",
+     *                         type="string",
+     *                         example="Paloma"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="apellidos",
+     *                         type="string",
+     *                         example="Peña Cano"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="created_at",
+     *                         type="string",
+     *                         example="2023-02-23T00:09:16.000000Z"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="updated_at",
+     *                         type="string",
+     *                         example="2023-02-23T12:33:45.000000Z"
+     *                     )
+     *                 )
+     *             )
+     *         )
+     *     )
+     * )
+     */
     public function index()
     {
         try {

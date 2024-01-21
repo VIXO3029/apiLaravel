@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabla de Clientes</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+
+     <!-- Agrega la siguiente línea para incluir Axios -->
+     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -84,10 +87,9 @@
             <h2 class="mb-4">Tabla de Clientes</h2>
 
             <div class="btn-group">
-                <button class="btn btn-primary" id="btnRefresh">Actualizar</button>
+                <button class="btn btn-primary" id="btnRefresh" onclick="refreshContent()">Actualizar</button>
                 <a href="{{ route('clientes.create') }}" class="btn btn-success">Agregar Cliente</a>
                 <a href="{{ route('clientes.edit', ['cliente' => 1]) }}" class="btn btn-warning">Modificar Cliente</a>
-
             </div>
 
             <table class="table">
@@ -105,6 +107,7 @@
             </table>
 
             <!-- Modal para confirmar la eliminación -->
+            </div>
             <div class="modal fade" id="confirmarEliminarModal" tabindex="-1" aria-labelledby="confirmarEliminarModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -124,6 +127,7 @@
             </div>
         </div>
     </main>
+  <!-- Agrega el siguiente script para Axios y la función refreshContent() -->
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

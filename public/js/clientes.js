@@ -86,8 +86,8 @@ async function cargarClientes() {
                 <td>${cliente.apellidos}</td>
                 <td>
                     <button class="btn btn-danger btn-sm eliminar-btn" data-id="${cliente.id}" data-nombre="${cliente.nombre} ${cliente.apellidos}">Eliminar</button>
-                    <a href="{{ route('clientes.edit', ['cliente' => 1]) }}" class="btn btn-warning">Modificar Cliente</a>
-                </td>
+                    <a href="{{ route('clientes.edit', ['cliente' => $cliente->id]) }}" class="btn btn-warning btn-sm">Modificar Cliente</a>
+
             `;
             tablaClientes.appendChild(fila);
         });

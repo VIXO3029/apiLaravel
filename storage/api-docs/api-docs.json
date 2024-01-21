@@ -1,0 +1,66 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Clientes",
+        "description": "Listado de las URI'S de la API Clientes",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000"
+        }
+    ],
+    "paths": {
+        "/api/clientes ": {
+            "get": {
+                "tags": [
+                    "Cliente"
+                ],
+                "summary": "Listado de todos los registros de los clientes",
+                "operationId": "68d07565123b8bee348b2a75dc17ff68",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "nombre": {
+                                                        "type": "string",
+                                                        "example": "Paloma"
+                                                    },
+                                                    "apellidos": {
+                                                        "type": "string",
+                                                        "example": "Peña Cano"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2023-02-23T00:09:16.000000Z"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2023-02-23T12:33:45.000000Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
